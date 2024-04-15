@@ -1,16 +1,18 @@
 import React from "react";
 import PersonRow from "./PersonRow";
 
-export default function PeopleTable({ people, onEditClick, onDeleteOneClick, onDeleteAllCheckedClick, 
-    onCheckedChange, onCheckedClick, checkedIds }) {
+export default function PeopleTable({ people, onEditClick, onDeleteOneClick, onDeleteAllCheckedClick,
+    onCheckedChange, onCheckClick, onUncheckClick, checkedIds, allChecked }) {
     return (
         <table className="table table-hover table-striped table-bordered">
             <thead>
                 <tr>
                     <th style={{ width: '15%' }}>
                         <button className="btn btn-danger w-100" onClick={onDeleteAllCheckedClick}>Delete All Checked</button>
-                        <button className="btn btn-outline-danger w-100 mt-2" onClick={onCheckedClick}>Check All</button>
-                        <button className="btn btn-outline-danger w-100 mt-2" onClick={onCheckedClick}>Uncheck All</button>
+                        <button className="btn btn-outline-danger w-100 mt-2" disabled={allChecked}
+                            onClick={onCheckClick}>Check All</button>
+                        <button className="btn btn-outline-danger w-100 mt-2" 
+                            onClick={onUncheckClick}>Uncheck All</button>
                     </th>
                     <th>First Name</th>
                     <th>Last Name</th>

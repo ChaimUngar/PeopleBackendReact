@@ -104,16 +104,24 @@ class ParentComponent extends React.Component {
         })
     }
 
-    onCheckedClick = () => {
-        const { allChecked, people } = this.state
+    // onCheckedClick = () => {
+    //     const { allChecked, people, checkedIds } = this.state
 
-        if (allChecked) {
-            this.setState({ checkedIds: [], allChecked: false })
-            
-        } else {
-            this.setState({checkedIds: [...people].map(p => p.id), allChecked: true})
-        }
+    //     if (checkedIds.length !== 0) {
+    //         this.setState({ checkedIds: [], allChecked: false })
+    //         console.log({ checkedIds })
+    //     } else {
+    //         this.setState({ checkedIds: people.map(p => p.id), allChecked: true })
+    //     }
 
+    // }
+
+    onCheckClick = () => {
+        this.setState({ checkedIds: this.state.people.map(p => p.id), allChecked: true })
+    }
+
+    onUncheckClick = () => {
+        this.setState({ checkedIds: [], allChecked: false })
     }
 
     onCheckedChange = (p) => {
@@ -127,7 +135,7 @@ class ParentComponent extends React.Component {
 
     render() {
         const { firstName, lastName, age } = this.state.person
-        const { people, edit, checkedIds } = this.state
+        const { people, edit, checkedIds, allChecked } = this.state
 
         return (
             <>
@@ -145,9 +153,11 @@ class ParentComponent extends React.Component {
                         onEditClick={this.onEditClick}
                         onDeleteOneClick={this.onDeleteOneClick}
                         onDeleteAllCheckedClick={this.onDeleteAllCheckedClick}
-                        onCheckedClick={this.onCheckedClick}
+                        onCheckClick={this.onCheckClick}
+                        onUncheckClick={this.onUncheckClick}
                         onCheckedChange={this.onCheckedChange}
-                        checkedIds={checkedIds} />
+                        checkedIds={checkedIds}
+                        allChecked={allChecked} />
                 </div>
             </>
 
